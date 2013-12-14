@@ -1,0 +1,19 @@
+{
+	"name": "bessel",
+	"version": "0.1.1",
+	"author": "SheetJS",
+	"description": "Bessel Functions in pure JS",
+	"keywords": ["bessel", "math", "specfun"],
+	"main": "bessel.js",
+	"repository": { "type": "git", "url": "https://github.com/SheetJS/bessel" },
+	"license": "MIT",
+	"scripts": {
+		"test": "make test"
+	},
+	"dependencies": {
+		"voc":""
+	},
+	"devDependencies": {
+		"mocha":""
+	}
+}
