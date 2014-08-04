@@ -1,6 +1,6 @@
 {
 	"name": "bessel",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"author": "SheetJS",
 	"description": "Bessel Functions in pure JS",
 	"keywords": ["bessel", "math", "specfun"],

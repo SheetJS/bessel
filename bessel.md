@@ -11,11 +11,10 @@ var M = Math;
 
 ## Horner Method
  
-The methods use an approximating polynomial and evaluate using Horner's method.
-In true JS form, let us define an `Array` prototype method:
+The methods use an approximating polynomial and evaluate using Horner's method:
 
 ```
-Array.prototype.horner = function(v) { return this.reduce(function(z,w){return v * z + w;},0); };
+function _horner(arr, v) { return arr.reduce(function(z,w){return v * z + w;},0); };
 ```
 
 ## Recurrence
@@ -97,8 +96,8 @@ For small `x`, the direct Laurent approximation gives better results.
 
 ```
     if(M.abs(x) < 8) {
-      a1 = b0_a1a.horner(y);
-      a2 = b0_a2a.horner(y);
+      a1 = _horner(b0_a1a, y);
+      a2 = _horner(b0_a2a, y);
       a = a1/a2;
     }
 ```
@@ -108,8 +107,8 @@ For larger `x`, the Chebyshev approach is taken:
 ``` 
     else {
       y = 64 / y;
-      a1 = b0_a1b.horner(y);
-      a2 = b0_a2b.horner(y);
+      a1 = _horner(b0_a1b, y);
+      a2 = _horner(b0_a2b, y);
       a = M.sqrt(W/M.abs(x))*(M.cos(xx)*a1-M.sin(xx)*a2*8/M.abs(x));
     }
     return a;
@@ -126,13 +125,13 @@ A similar approach is taken for the first-order bessel function
   function bessel1(x) {
     var a, a1, a2, y = x*x, xx = M.abs(x) - 2.356194491;
     if(Math.abs(x)< 8) {
-      a1 = x*b1_a1a.horner(y);
-      a2 = b1_a2a.horner(y);
+      a1 = x*_horner(b1_a1a, y);
+      a2 = _horner(b1_a2a, y);
       a = a1 / a2;
     } else {
       y = 64 / y;
-      a1=b1_a1b.horner(y);
-      a2=b1_a2b.horner(y);
+      a1=_horner(b1_a1b, y);
+      a2=_horner(b1_a2b, y);
       a=M.sqrt(W/M.abs(x))*(M.cos(xx)*a1-M.sin(xx)*a2*8/M.abs(x));
       if(x < 0) a = -a;
     }
@@ -194,13 +193,13 @@ var bessely = (function() {
   function bessel0(x) {
     var a, a1, a2, y = x * x, xx = x - 0.785398164;
     if(x < 8) {
-      a1 = b0_a1a.horner(y);
-      a2 = b0_a2a.horner(y);
+      a1 = _horner(b0_a1a, y);
+      a2 = _horner(b0_a2a, y);
       a = a1/a2 + W * besselj(x,0) * M.log(x);
     } else {
       y = 64 / y;
-      a1 = b0_a1b.horner(y);
-      a2 = b0_a2b.horner(y);
+      a1 = _horner(b0_a1b, y);
+      a2 = _horner(b0_a2b, y);
       a = M.sqrt(W/x)*(M.sin(xx)*a1+M.cos(xx)*a2*8/x);
     }
     return a;
@@ -213,13 +212,13 @@ var bessely = (function() {
   function bessel1(x) {
     var a, a1, a2, y = x*x, xx = x - 2.356194491;
     if(x < 8) {
-      a1 = x*b1_a1a.horner(y);
-      a2 = b1_a2a.horner(y);
+      a1 = x*_horner(b1_a1a, y);
+      a2 = _horner(b1_a2a, y);
       a = a1/a2 + W * (besselj(x,1) * M.log(x) - 1 / x);
     } else {
       y = 64 / y;
-      a1=b1_a1b.horner(y);
-      a2=b1_a2b.horner(y);
+      a1=_horner(b1_a1b, y);
+      a2=_horner(b1_a2b, y);
       a=M.sqrt(W/x)*(M.sin(xx)*a1+M.cos(xx)*a2*8/x);
     }
     return a;
@@ -236,15 +235,15 @@ var besseli = (function() {
   var b0_a = [1.0, 3.5156229, 3.0899424, 1.2067492, 0.2659732, 0.360768e-1, 0.45813e-2].reverse();
   var b0_b = [0.39894228, 0.1328592e-1, 0.225319e-2, -0.157565e-2, 0.916281e-2, -0.2057706e-1, 0.2635537e-1, -0.1647633e-1, 0.392377e-2].reverse();
   function bessel0(x) {
-    if(x <= 3.75) return b0_a.horner(x*x/(3.75*3.75));
-    return M.exp(M.abs(x))/M.sqrt(M.abs(x))*b0_b.horner(3.75/M.abs(x));
+    if(x <= 3.75) return _horner(b0_a, x*x/(3.75*3.75));
+    return M.exp(M.abs(x))/M.sqrt(M.abs(x))*_horner(b0_b, 3.75/M.abs(x));
   }
 
   var b1_a = [0.5, 0.87890594, 0.51498869, 0.15084934, 0.2658733e-1, 0.301532e-2, 0.32411e-3].reverse();
   var b1_b = [0.39894228, -0.3988024e-1, -0.362018e-2, 0.163801e-2, -0.1031555e-1, 0.2282967e-1, -0.2895312e-1, 0.1787654e-1, -0.420059e-2].reverse();
   function bessel1(x) {
-    if(x < 3.75) return x * b1_a.horner(x*x/(3.75*3.75));
-    return (x < 0 ? -1 : 1) * M.exp(M.abs(x))/M.sqrt(M.abs(x))*b1_b.horner(3.75/M.abs(x));
+    if(x < 3.75) return x * _horner(b1_a, x*x/(3.75*3.75));
+    return (x < 0 ? -1 : 1) * M.exp(M.abs(x))/M.sqrt(M.abs(x))*_horner(b1_b, 3.75/M.abs(x));
   }
 
   return function besseli(x, n) {
@@ -278,15 +277,15 @@ var besselk = (function() {
   var b0_a = [-0.57721566, 0.42278420, 0.23069756, 0.3488590e-1, 0.262698e-2, 0.10750e-3, 0.74e-5].reverse();
   var b0_b = [1.25331414, -0.7832358e-1, 0.2189568e-1, -0.1062446e-1, 0.587872e-2, -0.251540e-2, 0.53208e-3].reverse();
   function bessel0(x) {
-    if(x <= 2) return -M.log(x/2)*besseli(x,0) + b0_a.horner(x*x/4);
-    return M.exp(-x)/M.sqrt(x)*b0_b.horner(2/x);
+    if(x <= 2) return -M.log(x/2)*besseli(x,0) + _horner(b0_a, x*x/4);
+    return M.exp(-x)/M.sqrt(x)*_horner(b0_b, 2/x);
   }
 
   var b1_a = [1.0, 0.15443144, -0.67278579, -0.18156897, -0.1919402e-1, -0.110404e-2, -0.4686e-4].reverse();
   var b1_b = [1.25331414, 0.23498619, -0.3655620e-1, 0.1504268e-1, -0.780353e-2, 0.325614e-2, -0.68245e-3].reverse();
   function bessel1(x) {
-    if(x <= 2) return M.log(x/2)*besseli(x,1) + (1/x)*b1_a.horner(x*x/4);
-    return M.exp(-x)/M.sqrt(x)*b1_b.horner(2/x);
+    if(x <= 2) return M.log(x/2)*besseli(x,1) + (1/x)*_horner(b1_a, x*x/4);
+    return M.exp(-x)/M.sqrt(x)*_horner(b1_b, 2/x);
   }
 
   return _bessel_wrap(bessel0, bessel1, 'BESSELK', 2, 1);
