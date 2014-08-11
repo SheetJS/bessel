@@ -17,6 +17,6 @@ describe('When using bessel functions', function() {
     assert(Math.floor((bessel.besselk(1.5, 1) - 0.277388) * 10e6) < 10);
   });
   it('It must compute Weber\'s Bessel function at 2.5 with an order of 1 (0.145918)', function() {
-    assert(Math.floor((bessel.besselk(2.5, 1) - 0.981666) * 10e6) < 10);
+    assert(Math.floor((bessel.bessely(2.5, 1) - 0.145918) * 10e6) < 10);
   });
 });
