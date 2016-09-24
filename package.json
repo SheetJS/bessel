@@ -1,19 +1,26 @@
 {
 	"name": "bessel",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"author": "SheetJS",
-	"description": "Bessel Functions in pure JS",
-	"keywords": ["bessel", "math", "specfun"],
-	"main": "bessel.js",
-	"repository": { "type": "git", "url": "https://github.com/SheetJS/bessel" },
-	"license": "MIT",
+	"description": "Pure-JS Bessel Functions",
+	"keywords": [ "bessel", "math", "specfun" ],
+	"main": "./bessel",
+	"dependencies": {
+	},
+	"devDependencies": {
+		"mocha":"",
+		"voc":""
+	},
+	"repository": { "type":"git", "url":"git://github.com/SheetJS/bessel.git" },
 	"scripts": {
 		"test": "make test"
 	},
-	"dependencies": {
-		"voc":""
+	"config": {
+		"blanket": {
+			"pattern": "bessel.js"
+		}
 	},
-	"devDependencies": {
-		"mocha":""
-	}
+	"bugs": { "url": "https://github.com/SheetJS/bessel/issues" },
+	"license": "MIT",
+	"engines": { "node": ">=0.8" }
 }

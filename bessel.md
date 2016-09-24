@@ -14,7 +14,7 @@ var M = Math;
 The methods use an approximating polynomial and evaluate using Horner's method:
 
 ```
-function _horner(arr, v) { return arr.reduce(function(z,w){return v * z + w;},0); };
+function _horner(arr/*:Array<number>*/, v/*:number*/) { return arr.reduce(function(z,w){return v * z + w;},0); }
 ```
 
 ## Recurrence
@@ -29,7 +29,7 @@ So rather than go back and try to find solution for each order, we will build
 solutions for `n=0` and `n=1` and then apply the recurrence.  The helper:
 
 ```js
-function _bessel_iter(x, n, f0, f1, sign) {
+function _bessel_iter(x/*:number*/, n/*:number*/, f0/*:number*/, f1/*:number*/, sign/*:?number*/) {
   if(!sign) sign = -1;
   var tdx = 2 / x, f2;
   if(n === 0) return f0;
@@ -48,7 +48,7 @@ checks since `Y_n` is undefined at 0 and `K_n` is real only when `x>0`
 
 ```
 function _bessel_wrap(bessel0, bessel1, name, nonzero, sign) {
-  return function bessel(x,n) {
+  return function bessel(x/*:number*/,n/*:number*/) {
     if(n === 0) return bessel0(x);
     if(n === 1) return bessel1(x);
     if(n < 0) throw name + ': Order (' + n + ') must be nonnegative';
@@ -143,7 +143,7 @@ For large values of x, the aforementioned iteration is fine, but for small
 values the expressions quickly blow up.  Hence a more careful iteration is used:
 
 ```
-  return function besselj(x, n) {
+  return function besselj(x/*:number*/, n/*:number*/) {
     n = Math.round(n);
     if(n === 0) return bessel0(M.abs(x));
     if(n === 1) return bessel1(M.abs(x));
@@ -246,7 +246,7 @@ var besseli = (function() {
     return (x < 0 ? -1 : 1) * M.exp(M.abs(x))/M.sqrt(M.abs(x))*_horner(b1_b, 3.75/M.abs(x));
   }
 
-  return function besseli(x, n) {
+  return function besseli(x/*:number*/, n/*:number*/) {
     n = Math.round(n);
     if(n === 0) return bessel0(x);
     if(n == 1) return bessel1(x);

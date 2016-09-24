@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- bessel.js (C) 2013-present SheetJS http://sheetjs.com -->
+<!-- vim: set ts=2: -->
+<html>
+  <head>
+    <title>Bessel Live Demo</title>
+    <script src="bessel.js"></script>
+    <script src="https://cdn.rawgit.com/SheetJS/printj/master/printj.js"></script>
+  </head>
+  <body>
+    <b>Bessel Live Demo</b><br />
+    <a href="https://github.com/SheetJS/bessel">Source Code</a><br />
+    <a href="https://github.com/SheetJS/bessel/issues">Issues?  Something look weird?  Click here and report an issue</a><br />
+    <br />
+    <table>
+      <tr><td><b>Number:</b></td><td><input type="text" id="val" value="1.5"></td></tr>
+      <tr><td><b>Order:</b></td><td><input type="text" id="ord" value="1"></td></tr>
+      <tr><td colspan="2">&nbsp;</td></tr>
+      <tr><td colspan="2"><b><pre id="jt">J</pre></b></td></tr>
+      <tr><td colspan="2"><b><pre id="yt">Y</pre></b></td></tr>
+      <tr><td colspan="2"><b><pre id="it">I</pre></b></td></tr>
+      <tr><td colspan="2"><b><pre id="kt">K</pre></b></td></tr>
+    </table>
+  </body>
+  <script>
+    /*jshint browser:true */
+    var V = document.getElementById('val');
+    var O = document.getElementById('ord');
+    var J = document.getElementById('jt');
+    var Y = document.getElementById('yt');
+    var I = document.getElementById('it');
+    var K = document.getElementById('kt');
+
+    function update() {
+      var v = Number(V.value);
+      var o = Number(O.value);
+      if(v !== v) { J.innerHTML=Y.innerHTML=I.innerHTML=K.innerHTML = "Value |" + V.value + "| not valid"; return; }
+      if(o !== o) { J.innerHTML=Y.innerHTML=I.innerHTML=K.innerHTML = "Order |" + O.value + "| not valid"; return; }
+      o |= 0;
+      try { J.innerHTML = PRINTJ.sprintf("J(%.11g, %d) = %+.11g", v, o, BESSEL.besselj(v, o)); } catch(e) { J.innerHTML = String(e); }
+      try { Y.innerHTML = PRINTJ.sprintf("Y(%.11g, %d) = %+.11g", v, o, BESSEL.bessely(v, o)); } catch(e) { Y.innerHTML = String(e); }
+      try { I.innerHTML = PRINTJ.sprintf("I(%.11g, %d) = %+.11g", v, o, BESSEL.besseli(v, o)); } catch(e) { I.innerHTML = String(e); }
+      try { K.innerHTML = PRINTJ.sprintf("K(%.11g, %d) = %+.11g", v, o, BESSEL.besselk(v, o)); } catch(e) { K.innerHTML = String(e); }
+    }
+
+    /* Bind to relevant events */
+    if(O.addEventListener) {
+      O.addEventListener('keyup', update);
+      V.addEventListener('keyup', update);
+      J.addEventListener('change', update);
+      Y.addEventListener('change', update);
+      I.addEventListener('change', update);
+      K.addEventListener('change', update);
+    } else if(O.attachEvent) {
+      O.attachEvent('onkeyup', update);
+      V.attachEvent('onkeyup', update);
+      J.attachEvent('onchange', update);
+      Y.attachEvent('onchange', update);
+      I.attachEvent('onchange', update);
+      K.attachEvent('onchange', update);
+    } else {
+      O.oninput = update;
+      V.oninput = update;
+      J.onchange = update;
+      Y.onchange = update;
+      I.onchange = update;
+      K.onchange = update;
+    }
+
+    window.onload = function() { update(); };
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36810333-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</html>
+
