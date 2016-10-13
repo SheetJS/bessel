@@ -47,14 +47,14 @@ The return value is a JS number.  `NaN` signals an error in calculation.
 For example:
 
 ```js
-> // var BESSEL = require('bessel'); // uncomment this line if in node
-> BESSEL.besselj(1.5,0)              // 0.5118276712499389
-> BESSEL.bessely(1.5,0)              // 0.38244892476502895
-> BESSEL.besseli(1.5,0)              // 1.6467232021476754
-> BESSEL.besselk(1.5,0)              // 0.2138055693236539
+// var BESSEL = require('bessel'); // uncomment this line if in node
+BESSEL.besselj(1.5,0)              // 0.5118276712499389
+BESSEL.bessely(1.5,0)              // 0.38244892476502895
+BESSEL.besseli(1.5,0)              // 1.6467232021476754
+BESSEL.besselk(1.5,0)              // 0.2138055693236539
 
-> var Y = BESSEL.bessely
-> Y(Math.PI, 5) + Y(Math.PI, 3) - (2 * 4 / Math.PI) * Y(Math.PI, 4) // 0
+var Y = BESSEL.bessely
+Y(Math.PI, 5) + Y(Math.PI, 3) - (2 * 4 / Math.PI) * Y(Math.PI, 4) // 0
 ```
 
 ## Testing
@@ -84,6 +84,8 @@ Please consult the attached LICENSE file for details.  All rights not explicitly
 granted by the MIT License are reserved by the Original Author.
 
 ## Badges
+
+[![Build Status](https://saucelabs.com/browser-matrix/bessel.svg)](https://saucelabs.com/u/bessel)
 
 [![Build Status](https://travis-ci.org/SheetJS/bessel.svg?branch=master)](https://travis-ci.org/SheetJS/bessel)
 

@@ -33,6 +33,17 @@ clean: ## Remove targets and build artifacts
 test mocha: test.js $(TARGET) ## Run test suite
 	mocha -R spec -t 20000
 
+.PHONY: ctest
+ctest: ## Build browser test (into ctest/ subdirectory)
+	cp -f test.js ctest/test.js
+	cp -f shim.js ctest/shim.js
+	cp -f $(TARGET) ctest/
+
+.PHONY: ctestserv
+ctestserv: ## Start a test server on port 8000
+	@cd ctest && python -mSimpleHTTPServer
+
+
 ## Code Checking
 
 .PHONY: lint
