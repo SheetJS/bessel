@@ -1,6 +1,6 @@
 {
 	"name": "bessel",
-	"version": "0.3.0",
+	"version": "1.0.0",
 	"author": "SheetJS",
 	"description": "Pure-JS Bessel Functions",
 	"keywords": [ "bessel", "math", "specfun" ],
@@ -20,7 +20,8 @@
 			"pattern": "bessel.js"
 		}
 	},
+	"homepage": "https://oss.sheetjs.com/bessel/",
 	"bugs": { "url": "https://github.com/SheetJS/bessel/issues" },
-	"license": "MIT",
+	"license": "Apache-2.0",
 	"engines": { "node": ">=0.8" }
 }

@@ -23,7 +23,7 @@ var BESSEL;
   }
   /*jshint ignore:end */
 }(function(BESSEL) {
-BESSEL.version = '0.3.0';
+BESSEL.version = '1.0.0';
 var M = Math;
 
 /*::

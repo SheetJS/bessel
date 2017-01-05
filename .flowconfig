@@ -2,13 +2,15 @@
 .*/node_modules/.*
 .*/dist/.*
 .*/test.js
+.*/bessel.js
 
 .*/bits/.*
 .*/ctest/.*
 .*/misc/.*
 .*/perf/.*
 
-.*/bessel.js
+.*/demo/browser.js
+.*/shim.js
 
 [include]
 bessel.flow.js

@@ -21,7 +21,7 @@ var BESSEL;
   }
   /*jshint ignore:end */
 }(function(BESSEL) {
-BESSEL.version = '0.3.0';
+BESSEL.version = '1.0.0';
 var M = Math;
 
 function _horner(arr, v) { for(var i = 0, z = 0; i < arr.length; ++i) z = v * z + arr[i]; return z; }

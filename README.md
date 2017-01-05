@@ -81,7 +81,7 @@ like Mathematica reverse the argument order.
 ## License
 
 Please consult the attached LICENSE file for details.  All rights not explicitly
-granted by the MIT License are reserved by the Original Author.
+granted by the Apache 2.0 License are reserved by the Original Author.
 
 ## Badges
 
@@ -90,5 +90,11 @@ granted by the MIT License are reserved by the Original Author.
 [![Build Status](https://travis-ci.org/SheetJS/bessel.svg?branch=master)](https://travis-ci.org/SheetJS/bessel)
 
 [![Coverage Status](http://img.shields.io/coveralls/SheetJS/bessel/master.svg)](https://coveralls.io/r/SheetJS/bessel?branch=master)
+
+[![NPM Downloads](https://img.shields.io/npm/dt/bessel.svg)](https://npmjs.org/package/bessel)
+
+[![Dependencies Status](https://david-dm.org/sheetjs/bessel/status.svg)](https://david-dm.org/sheetjs/bessel)
+
+[![ghit.me](https://ghit.me/badge.svg?repo=sheetjs/bessel)](https://ghit.me/repo/sheetjs/bessel)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-36810333-1/SheetJS/bessel?pixel)](https://github.com/SheetJS/bessel)

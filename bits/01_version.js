@@ -1,1 +1,1 @@
-BESSEL.version = '0.3.0';
+BESSEL.version = '1.0.0';
