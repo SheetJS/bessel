@@ -83,9 +83,13 @@ like Mathematica reverse the argument order.
 Please consult the attached LICENSE file for details.  All rights not explicitly
 granted by the Apache 2.0 License are reserved by the Original Author.
 
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSheetJS%2Fbessel.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSheetJS%2Fbessel?ref=badge_large)
+
 ## Badges
 
 [![Build Status](https://saucelabs.com/browser-matrix/bessel.svg)](https://saucelabs.com/u/bessel)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSheetJS%2Fbessel.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSheetJS%2Fbessel?ref=badge_shield)
 
 [![Build Status](https://travis-ci.org/SheetJS/bessel.svg?branch=master)](https://travis-ci.org/SheetJS/bessel)
 
