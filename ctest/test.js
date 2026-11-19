@@ -26,7 +26,13 @@ var tests = {
 'besseli': [
   [1.5, 1, 0.981666],
   [1.9, 2, 0.603272435],
-  [2.5, 1, 2.516716242]
+  [2.5, 1, 2.516716242],
+  [-5, 0, 27.239871894394888],
+  [-13.2, 3, -42092.84027401435],
+  [-709, 1, -1.230679092316023e+306],
+  [30, 3, 671140464704.7899],
+  [100, 3, 1.0247437513374843e+42],
+  [500, 5, 2.21424560618623e+215]
 ],
 'besselj': [
   [1.5, 1, 0.557936508],
@@ -118,6 +124,17 @@ describe('properties', function() {
 					if(!approx(pn, pp, t)) throw new Error(F + " pn[" + pn + "] != pp[" + (pp) + "] (" + r + "," + n + ")");
 					if(!approx(nn, np, t)) throw new Error(F + " nn[" + nn + "] != pn[" + (pn) + "] (" + r + "," + n + ")");
 				}
+			}
+		});
+	});
+	it('besseli', function() {
+		var F = "BESSELI", f = X.besseli;
+		rand.forEach(function(r) {
+			for(var n = 0; n < 20; ++n) {
+				var pp = f( r,  n), np = f(-r,  n);
+				/* besseli even if n is even, odd if n is odd */
+				var ex = (n%2) ? -pp : pp;
+				if(!approx(np, ex, t)) throw new Error(F + " np[" + np + "] != " + ex + " (" + r + "," + n + ")");
 			}
 		});
 	});
